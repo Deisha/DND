@@ -5,7 +5,6 @@ import requests
 import streamlit as st
 from PIL import Image
 
-# Set API Key
 os.environ["GROQ_API_KEY"] = "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"
 GROQ_CLOUD_API_KEY = os.getenv("GROQ_API_KEY")
 
@@ -13,7 +12,6 @@ if not GROQ_CLOUD_API_KEY:
     st.error("Groq Cloud API key not found. Please set the GROQ_API_KEY environment variable.")
     st.stop()
 
-# Streamlit UI Configuration
 st.set_page_config(page_title="StartupMate", page_icon="💡", layout="wide")
 st.markdown(
     """
@@ -33,8 +31,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Display Logo
-logo_path = "logofinal.png"  # Ensure this is in the same directory
+logo_path = "logofinal.png"  
 if os.path.exists(logo_path):
     logo = Image.open(logo_path)
     st.image(logo, width=200)
@@ -42,7 +39,6 @@ if os.path.exists(logo_path):
 st.title("💡 StartupMate - Your AI Co-Founder")
 st.subheader("Helping solo founders navigate their startup journey with AI-powered insights.")
 
-# Pre-defined PDF Files
 pdf_files = ["jumpstart.pdf", "harvard.pdf","start1.pdf"]  # Place these in the same directory
 
 def extract_text_from_pdf(pdf_path):
@@ -62,7 +58,6 @@ def extract_text_from_pdf(pdf_path):
         st.error(f"Error processing {pdf_path}: {e}")
     return full_text
 
-# Extract Text from Predefined PDFs
 all_text = ""
 for pdf in pdf_files:
     if os.path.exists(pdf):
@@ -70,7 +65,6 @@ for pdf in pdf_files:
     else:
         st.error(f"File {pdf} not found. Please ensure it's in the same directory.")
 
-# AI Interaction
 st.write("### Ask AI About Your Startup")
 user_input = st.text_area("Question:")
 
